@@ -28,4 +28,10 @@ public class InstructorService {
     public Instructor updateInstructor(Instructor inst){
     return this.instructorRepoImple.updateInstructor(inst);
     }
+    public void deleteInstructor(int id){
+    this.instructorRepoImple.deleteInstructor(id);
+    }
+    public Instructor getInstructorByIdAll(int id){
+    return this.instructorRepoImple.getInstructorAndCourseByJoinFetch(id);
+    }
 }

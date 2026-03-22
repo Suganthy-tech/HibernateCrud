@@ -36,7 +36,7 @@ return new ResponseEntity<>(api,HttpStatus.OK);
 
     @GetMapping("/{instructorId}")
     public ResponseEntity<Instructor> getInstructorById(@PathVariable int instructorId){
-    Instructor inst=this.instructorService.getInstructorById(instructorId);
+    Instructor inst=this.instructorService.getInstructorByIdAll(instructorId);
 return new ResponseEntity<>(inst,HttpStatus.OK);
     }
 
@@ -45,4 +45,12 @@ return new ResponseEntity<>(inst,HttpStatus.OK);
     Instructor inst=this.instructorService.updateInstructor(instructor);
             return new ResponseEntity<>(inst,HttpStatus.OK);
     }
+  @DeleteMapping("/{instructorId}")
+    public ResponseEntity<String> deleteInstructor(@PathVariable int instructorId){
+    this.instructorService.deleteInstructor(instructorId);
+    return new ResponseEntity<>("Successfully Deleted",HttpStatus.OK);
+  }
+
+
+
 }

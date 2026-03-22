@@ -1,5 +1,6 @@
 package com.udemy.Profile.Entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
@@ -31,7 +32,8 @@ public class Instructor {
     @JoinColumn(name="instructor_detail_id")
     private InstructorDetail instructorDetail;
 
-    @OneToMany(mappedBy = "instructor",  cascade = CascadeType.ALL,
+    @JsonManagedReference
+    @OneToMany(mappedBy = "instructor",  cascade =  {CascadeType.PERSIST,CascadeType.MERGE,CascadeType.REFRESH,},
             fetch = FetchType.LAZY)
     private List<Course> courses;
 

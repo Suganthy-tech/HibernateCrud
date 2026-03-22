@@ -10,4 +10,6 @@ public interface InstructorRepo {
     public List<Instructor> getAllInstructor();
     public Instructor getInstructorById(int id);
     public Instructor updateInstructor(Instructor instructor);
+    public void deleteInstructor(int id);
+    public Instructor getInstructorAndCourseByJoinFetch(int id);
 }

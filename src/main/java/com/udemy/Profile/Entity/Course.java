@@ -1,6 +1,8 @@
 package com.udemy.Profile.Entity;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 @Entity
@@ -19,6 +21,7 @@ public class Course {
     @Column(name="duration")
     private int duration_in_hours;
 
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name="instructor_id")
     private Instructor instructor;
