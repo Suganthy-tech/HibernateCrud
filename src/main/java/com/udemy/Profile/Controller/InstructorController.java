@@ -1,6 +1,8 @@
 package com.udemy.Profile.Controller;
 
 import com.udemy.Profile.ApiResponse.ApiResponse;
+import com.udemy.Profile.DAO.updateCourseRequest;
+import com.udemy.Profile.Entity.Course;
 import com.udemy.Profile.Entity.Instructor;
 import com.udemy.Profile.Service.InstructorService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,6 +47,14 @@ return new ResponseEntity<>(inst,HttpStatus.OK);
     Instructor inst=this.instructorService.updateInstructor(instructor);
             return new ResponseEntity<>(inst,HttpStatus.OK);
     }
+
+    @PostMapping("/course/review")
+    public ResponseEntity<String> addCourseReview(@RequestBody updateCourseRequest request){
+String cou=this.instructorService.updateCourseReview(request);
+return new ResponseEntity<>(cou,HttpStatus.OK);
+    }
+
+
   @DeleteMapping("/{instructorId}")
     public ResponseEntity<String> deleteInstructor(@PathVariable int instructorId){
     this.instructorService.deleteInstructor(instructorId);

@@ -1,7 +1,10 @@
 package com.udemy.Profile.Service;
 
 import com.udemy.Profile.DAO.InstructorRepoImple;
+import com.udemy.Profile.DAO.updateCourseRequest;
+import com.udemy.Profile.Entity.Course;
 import com.udemy.Profile.Entity.Instructor;
+import com.udemy.Profile.Entity.Review;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -33,5 +36,9 @@ public class InstructorService {
     }
     public Instructor getInstructorByIdAll(int id){
     return this.instructorRepoImple.getInstructorAndCourseByJoinFetch(id);
+    }
+    public String updateCourseReview(updateCourseRequest course)
+    {
+        return this.instructorRepoImple.addCourseReview( course.getCourse_id(),  new Review(course.getRating(),course.getComments()));
     }
 }

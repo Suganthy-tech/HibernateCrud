@@ -2,6 +2,7 @@ package com.udemy.Profile.DAO;
 
 import com.udemy.Profile.Entity.Course;
 import com.udemy.Profile.Entity.Instructor;
+import com.udemy.Profile.Entity.Review;
 import com.udemy.Profile.Exception.InstructorNotFound;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
@@ -86,13 +87,21 @@ public class InstructorRepoImple implements InstructorRepo{
 
     @Override
     public Instructor getInstructorAndCourseByJoinFetch(int id) {
-        TypedQuery<Instructor> query=this.em.createQuery("Select i from Instructor i left join fetch i.courses where i.id=:data",Instructor.class);
+        TypedQuery<Instructor> query=this.em.createQuery("Select i from Instructor i left join fetch i.courses c join fetch c.reviews  where i.id=:data",Instructor.class);
         query.setParameter("data",id);
         List<Instructor> l=query.getResultList();
        return l.stream()
                 .findFirst()
                 .orElseThrow(() ->
                         new InstructorNotFound("Instructor not found with id " + id));
+    }
+
+    @Transactional
+    @Override
+    public String addCourseReview(int id, Review review) {
+       Course cour= this.em.find(Course.class, id);
+       cour.addReview(review);
+       return "Review Added";
     }
 
 

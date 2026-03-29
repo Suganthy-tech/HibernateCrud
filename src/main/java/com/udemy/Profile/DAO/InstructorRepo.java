@@ -1,6 +1,8 @@
 package com.udemy.Profile.DAO;
 
+import com.udemy.Profile.Entity.Course;
 import com.udemy.Profile.Entity.Instructor;
+import com.udemy.Profile.Entity.Review;
 
 
 import java.util.List;
@@ -12,4 +14,5 @@ public interface InstructorRepo {
     public Instructor updateInstructor(Instructor instructor);
     public void deleteInstructor(int id);
     public Instructor getInstructorAndCourseByJoinFetch(int id);
+    public String addCourseReview(int id, Review review);
 }

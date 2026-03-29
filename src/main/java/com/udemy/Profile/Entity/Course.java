@@ -5,6 +5,9 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name="course")
 public class Course {
@@ -25,6 +28,20 @@ public class Course {
     @ManyToOne
     @JoinColumn(name="instructor_id")
     private Instructor instructor;
+
+    @OneToMany(cascade=CascadeType.ALL)
+    @JoinColumn(name="course_id")
+    private List<Review> reviews=new ArrayList<>();;
+
+
+    public void addReview(Review review){
+
+        this.reviews.add(review);
+    }
+
+    public List<Review> getReviews() {
+        return reviews;
+    }
 
     public Course() {
 
